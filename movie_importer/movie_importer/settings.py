@@ -104,6 +104,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'api_version': '1',
+    'api_path': '/',
+    'relative_paths': False,
+    'enabled_methods': [
+        'get',
+    ],
+    'is_authenticated': False,
+    'is_superuser': False,
+    'info': {
+        'contact': 'miks.szymon@gmail.com',
+        'description': 'Movies REST API documentation for Nozbe recruitment task',
+        'title': 'Movies REST API',
+    },
+    'doc_expansion': 'none',
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 

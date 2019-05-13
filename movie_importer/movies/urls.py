@@ -9,6 +9,7 @@ schema_view = get_swagger_view(title='Movies REST API')
 urlpatterns = [
     path('titles/', TitleListView.as_view(), name="all-titles"),
     path('titles-name/', TitleListBasedOnNameView.as_view(), name="titles-name"),
+    path('docs/', schema_view),
     path('', api_root)
 ]
 
