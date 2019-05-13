@@ -20,16 +20,13 @@ def api_root(request, format=None):
 class TitleListView(ListAPIView):
     """
     get:
-    Return a list of movies
+    Return a list of movies based on given aut.
 
-    Possible query_params:
-    - start_year (Year)
-    - genre (string)
+    Required query_params:
+    - date_from (d-m-Y)
+    - date_to (d-m-Y)
 
-    eg.
-    /titles?start_year=1894
-    or
-    /titles?genre=Documentary
+    eg. /top?date_from=10-05-2019&date_to=12-05-2019
     """
 
     serializer_class = TitleSerializer
@@ -51,16 +48,6 @@ class TitleListView(ListAPIView):
 
 
 class TitleListBasedOnNameView(ListAPIView):
-    """
-    get:
-    Return a list of movies based on given author name.
-
-    Required query_params:
-    - name (string)
-
-    eg. /titles-name?name=John
-    """
-
     serializer_class = TitleSerializer
     pagination_class = StandardResultsSetPagination
 
@@ -73,7 +60,7 @@ class TitleListBasedOnNameView(ListAPIView):
         name = self.request.query_params.get('name', None)
 
         if not name:
-            return Response({"status": "Required param 'name' not found."},
+            return Response({"status": "Required param name not found."},
                             status=status.HTTP_400_BAD_REQUEST)
 
         queryset = self.get_queryset()
