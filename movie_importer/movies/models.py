@@ -25,7 +25,7 @@ class Title(models.Model):
     end_year = models.IntegerField(blank=True, null=True)
     runtime_minutes = models.IntegerField(blank=True, null=True)
     genres = models.CharField(max_length=250)
-    author = models.ForeignKey(Name, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(Name, related_name='author', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.original_title
