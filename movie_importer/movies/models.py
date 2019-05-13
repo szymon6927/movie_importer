@@ -4,8 +4,8 @@ from django.db import models
 class Name(models.Model):
     imdb_name_id = models.CharField(max_length=20, unique=True)
     primary_name = models.CharField(max_length=120)
-    birth_year = models.IntegerField(blank=True)
-    death_year = models.IntegerField(blank=True)
+    birth_year = models.IntegerField(blank=True, null=True)
+    death_year = models.IntegerField(blank=True, null=True)
     primary_profession = models.CharField(max_length=250)
 
     def __str__(self):
@@ -22,10 +22,10 @@ class Title(models.Model):
     original_title = models.CharField(max_length=200)
     is_adult = models.BooleanField()
     start_year = models.IntegerField()
-    end_year = models.IntegerField(blank=True)
-    runtime_minutes = models.IntegerField(blank=True)
+    end_year = models.IntegerField(blank=True, null=True)
+    runtime_minutes = models.IntegerField(blank=True, null=True)
     genres = models.CharField(max_length=250)
-    author = models.ForeignKey(Name, on_delete=models.CASCADE)
+    author = models.ForeignKey(Name, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.original_title
