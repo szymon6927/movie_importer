@@ -16,7 +16,7 @@ class IMDBName:
 
     @property
     def death_year(self):
-        return int(self.data['deathYear']) if self.data['birthYear'] != "\\N" else None
+        return int(self.data['deathYear']) if self.data['deathYear'] != "\\N" else None
 
     @property
     def primary_profession(self):
@@ -24,7 +24,7 @@ class IMDBName:
 
     @property
     def known_for_titles(self):
-        return self.data['knownForTitles']
+        return self.data['knownForTitles'].split(",")
 
 
 class IMDBTitle:
@@ -61,7 +61,7 @@ class IMDBTitle:
 
     @property
     def runtime_minutes(self):
-        return self.data['runtimeMinutes']
+        return int(self.data['runtimeMinutes']) if self.data['runtimeMinutes'] != "\\N" else None
 
     @property
     def genres(self):
